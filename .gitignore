@@ -1,0 +1,7 @@
+# VS code configuration for debugging
+.vscode
+
+
+# Executable files and javascript files
+*.exe
+*.js
