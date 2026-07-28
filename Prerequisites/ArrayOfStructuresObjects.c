@@ -51,7 +51,7 @@ void TakeUserInput(Student arr[], int index)
 }
 
 // Create a fucntion to display  the user data stored into the structure Objects (Array).
-void PrintStudentDetails(Student *arr, int index)
+void PrintStudentDetails(Student arr[], int index)
 {
 
     for (int i = 0; i < index; i++)
@@ -68,14 +68,50 @@ void PrintStudentDetails(Student *arr, int index)
     }
 }
 
+// Create a fuction that can change the details of a student.
+void ChangeDetails(Student arr[], int studentIndex)
+{
+
+    printf("\n\n");
+
+    printf("Enter the name of the student: ");
+    fgets(arr[studentIndex].name, sizeof(arr[studentIndex].name), stdin);
+
+    printf("Enter the course of the student: ");
+    fgets(arr[studentIndex].course, sizeof(arr[studentIndex].course), stdin);
+
+    printf("Enter the college name: ");
+    fgets(arr[studentIndex].collegeName, sizeof(arr[studentIndex].collegeName), stdin);
+
+    printf("Enter the contact of the student: ");
+    fgets(arr[studentIndex].contact, sizeof(arr[studentIndex].contact), stdin);
+
+    printf("Enter the email of the student: ");
+    fgets(arr[studentIndex].email, sizeof(arr[studentIndex].email), stdin);
+
+    printf("Enter the course fees of the student: ");
+    scanf("%f", &arr[studentIndex].fees);
+
+    printf("Enter the age of the student: ");
+    scanf("%d", &arr[studentIndex].age);
+
+    getchar();
+}
+
 int main()
 {
 
-    Student arr[5];
+    Student arr[2];
     int index = sizeof(arr) / sizeof(arr[0]);
 
     TakeUserInput(arr, index);
+
     printf("\n\n"); // Taking two line space
+
+    PrintStudentDetails(arr, index);
+
+    ChangeDetails(arr, 1);
+
 
     PrintStudentDetails(arr, index);
 
