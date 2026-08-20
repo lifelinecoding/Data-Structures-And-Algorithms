@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <windows.h>
 
+// Inserting a new element at the starting.
 void InsertAtStart(int arr[], int *size, int capacity, int newItem)
 {
     if (*size >= capacity)
@@ -16,6 +17,27 @@ void InsertAtStart(int arr[], int *size, int capacity, int newItem)
         }
 
         arr[0] = newItem;
+        *size = *size + 1;
+    }
+}
+
+// Inserting a new element at the particular index.
+
+void InsertAtParticularIndex(int arr[], int *size, int capacity, int index, int newItem){
+    if (*size >= capacity)
+    {
+        printf("Array is full.\n");
+    }
+    else if(index > *size){
+        printf("Invalid index.\n");
+    }
+    else {
+        for (int idx = *size; idx >= index; idx--)
+        {
+            arr[idx] = arr[idx - 1];
+        }
+
+        arr[index] = newItem;
         *size = *size + 1;
     }
 }
@@ -43,7 +65,12 @@ int main()
     InsertAtStart(arr, &size, capacity, 5);
     InsertAtStart(arr, &size, capacity, 6);
 
-    // 1
+    InsertAtParticularIndex(arr, &size, capacity, 3, 10);
+    InsertAtParticularIndex(arr, &size, capacity, 6, 9);
+
+    //  6 -> 5 -> 4 -> 3 -> 2 -> 1
+    //  6 -> 5 -> 4 -> 10 -> 3 -> 2 -> 1
+
 
     Display(arr, &size);
 
