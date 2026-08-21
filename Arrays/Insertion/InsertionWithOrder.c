@@ -73,6 +73,6 @@ int main()
 
 
     Display(arr, &size);
-
+    free(arr);
     return 0;
 }

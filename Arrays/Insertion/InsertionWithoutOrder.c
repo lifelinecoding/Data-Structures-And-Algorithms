@@ -17,11 +17,14 @@ void InsertAtEnd(int arr[], int *size, int capacity, int newItem)
 }
 
 // Insertion at the starting.
-void InsertAtStart(int arr[], int *size, int capacity, int newItem){
-    if(*size >= capacity){
+void InsertAtStart(int arr[], int *size, int capacity, int newItem)
+{
+    if (*size >= capacity)
+    {
         printf("Array is full.\n");
     }
-    else{
+    else
+    {
         int temp = arr[0];
         arr[0] = newItem;
         arr[*size] = temp;
@@ -31,21 +34,24 @@ void InsertAtStart(int arr[], int *size, int capacity, int newItem){
 }
 
 // Insertion at the particular index.
-void InsertAtParticularIndex(int arr[], int *size, int capacity, int index, int newItem){
-    if(*size >= capacity){
+void InsertAtParticularIndex(int arr[], int *size, int capacity, int index, int newItem)
+{
+    if (*size >= capacity)
+    {
         printf("Array is full.\n");
-    }    
-    else if(index > *size){
+    }
+    else if (index > *size)
+    {
         printf("Invalid index.\n");
     }
-    else {
+    else
+    {
         int temp = arr[index];
         arr[index] = newItem;
         arr[*size] = temp;
         *size = *size + 1;
     }
 }
-
 
 // Function to display array elements
 void Display(int arr[], int *size)
@@ -73,12 +79,11 @@ int main()
     InsertAtParticularIndex(arr, &size, capacity, 2, 3);
     InsertAtParticularIndex(arr, &size, capacity, 1, 0);
 
-
     // 10 5 6 -> 2 5 6 10 -> 12 5 6 10 2 -> 12 5 3 10 2 6 -> 12 0 3 10 2 6 5
 
     // printf("%d", size);
 
     Display(arr, &size);
-
+    free(arr);
     return 0;
 }
