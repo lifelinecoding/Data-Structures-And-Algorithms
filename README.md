@@ -21,7 +21,15 @@ The topics are organized systematically to mirror our class progression:
 ```text
 ├── 01-Prerequisites/
 ├── 02-Arrays/
-
+    ├── 2D Arrays/
+    ├── 3D Arrays/
+    ├── Insertion/
+    ├── Deletion/
+    ├── Searching/
+├── 03-Linked List/
+    ├── Singly Linked List/
+    ├── Doubly Linked List/
+    ├── Circular Linked List/
 ```
 
 ---
