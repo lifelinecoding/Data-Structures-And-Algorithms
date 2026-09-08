@@ -40,6 +40,7 @@ Node* InsertAtEnd(Node *head, int data)
     newNode->data = data;
     current->next = newNode;
     newNode->next = NULL;
+    return head;
 }
 
 void Traverse(Node *head)
@@ -62,13 +63,13 @@ int main()
     Node *head = NULL;
 
     head = InsertAtEnd(head, 4);
-    InsertAtEnd(head, 5);
-    InsertAtEnd(head, 6);
-    InsertAtEnd(head, 7);
-    InsertAtEnd(head, 8);
-    InsertAtEnd(head, 9);
-    InsertAtEnd(head, 10);
-    InsertAtEnd(head, 11);
+    head = InsertAtEnd(head, 5);
+    head = InsertAtEnd(head, 6);
+    head = InsertAtEnd(head, 7);
+    head = InsertAtEnd(head, 8);
+    head = InsertAtEnd(head, 9);
+    head = InsertAtEnd(head, 10);
+    head = InsertAtEnd(head, 11);
 
     Traverse(head);
 
