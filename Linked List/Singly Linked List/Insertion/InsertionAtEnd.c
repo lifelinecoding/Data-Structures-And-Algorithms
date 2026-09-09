@@ -20,7 +20,7 @@ Node* InsertAtEnd(Node *head, int data)
     if (newNode == NULL)
     {
         printf("Memory allocation for new node is failed!\n");
-        return 0;
+        return head;
     }
 
     // Checking is head node is NULL.
