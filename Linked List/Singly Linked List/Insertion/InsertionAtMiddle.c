@@ -18,6 +18,11 @@ Node *InsertAtMiddle(Node *head, int position, int data)
     Node *current = head;
     Node *newNode = (Node *)malloc(sizeof(Node));
 
+    if(position < 0){
+        printf("Invalid position\n");
+        return head;
+    }
+
     // Memory is allocated for new node or not.
     if (newNode == NULL)
     {
