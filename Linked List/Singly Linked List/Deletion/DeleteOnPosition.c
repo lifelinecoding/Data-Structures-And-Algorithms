@@ -90,5 +90,12 @@ int main()
     head = DeleteAtPosition(head, 1);
     head = DeleteAtPosition(head, 4);       // Invalid position
     Traverse(head);
+
+    // Free the memory location
+    free(head);
+    free(first);
+    free(second);
+    free(third);
+    
     return 0;
 }

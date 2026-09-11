@@ -83,5 +83,11 @@ int main()
     head = DeleteOnData(head, 5);
     head = DeleteOnData(head, 1);
     Traverse(head);
+
+    // Free the memory location
+    free(head);
+    free(first);
+    free(second);
+    free(third);
     return 0;
 }
