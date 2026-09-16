@@ -18,7 +18,7 @@ Node *InsertAtMiddle(Node *head, int position, int data)
     Node *current = head;
     Node *newNode = (Node *)malloc(sizeof(Node));
 
-    if(position < 0){
+    if(position <= 0){
         printf("Invalid position\n");
         return head;
     }
@@ -35,6 +35,13 @@ Node *InsertAtMiddle(Node *head, int position, int data)
     {
         newNode->data = data;
         newNode->next = NULL;
+        return newNode;
+    }
+
+    // If insertion is happening at first position
+    if(position == 1){
+        newNode->data = data;
+        newNode->next = current;
         return newNode;
     }
 
@@ -87,6 +94,7 @@ int main()
     head = InsertAtMiddle(head, 2, 4);
     head = InsertAtMiddle(head, 4, 7);
     head = InsertAtMiddle(head, 2, 1);
+    head = InsertAtMiddle(head, 1, 5);
     Traverse(head);
     return 0;
 }
