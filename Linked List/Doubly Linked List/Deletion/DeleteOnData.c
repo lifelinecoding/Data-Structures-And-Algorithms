@@ -14,17 +14,10 @@ struct Node
 typedef struct Node Node;
 
 // Function to delete a node at specified position in doublly linked list.
-
-Node *DeleteOnPosition(Node *head, int position)
+Node *DeleteOnData(Node *head, int data)
 {
     Node *current = head;
     Node *Next = NULL;
-
-    if (position <= 0)
-    {
-        printf("Invalid Position.\n");
-        return head;
-    }
 
     if (current == NULL)
     {
@@ -32,7 +25,7 @@ Node *DeleteOnPosition(Node *head, int position)
         return head;
     }
 
-    if (position == 1)
+    if (current->data == data)
     {
         if (current->next != NULL)
         {
@@ -44,18 +37,27 @@ Node *DeleteOnPosition(Node *head, int position)
     }
 
     Next = current->next;
-    for (int i = 1; i < position - 1 && current->next != NULL; i++)
+    while (Next != NULL)
     {
-        current = current->next;
-        Next = current->next;
-    }
+        if (Next->data != data)
+        {
+            current = current->next;
+            Next = Next->next;
+            continue;
+        }
+        else
+        {
+            current->next = Next->next;
+            if (Next->next != NULL)
+            {
+                (Next->next)->prev = current;
+            }
+            free(Next);
+        }
 
-    current->next = Next->next;
-    if (Next->next != NULL)
-    {
-        (Next->next)->prev = current;
+        return head;
     }
-    free(Next);
+    printf("Data is not present in the list\n");
     return head;
 }
 
@@ -116,9 +118,11 @@ int main()
     head->prev = NULL;
 
     TraverseUsingHead(head);
-    head = DeleteOnPosition(head, 3);
-    head = DeleteOnPosition(head, 1);
-    // head  = DeleteOnPosition(head, -2);
+    head = DeleteOnData(head, 3);
+    head = DeleteOnData(head, 8);
+    head = DeleteOnData(head, 1);
+    head = DeleteOnData(head, 9);
+    // head = DeleteOnData(head, 0);
     printf("\n");
     TraverseUsingHead(head);
 
