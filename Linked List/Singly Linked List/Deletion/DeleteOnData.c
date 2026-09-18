@@ -84,10 +84,14 @@ int main()
     head = DeleteOnData(head, 1);
     Traverse(head);
 
-    // Free the memory location
-    free(head);
-    free(first);
-    free(second);
-    free(third);
+    // Free the memory
+    Node *current = head;
+    while (current != NULL)
+    {
+        Node *next = current->next;
+        free(current);
+        current = next;
+    }
+    
     return 0;
 }

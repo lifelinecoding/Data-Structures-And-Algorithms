@@ -92,10 +92,13 @@ int main()
     Traverse(head);
 
     // Free the memory location
-    free(head);
-    free(first);
-    free(second);
-    free(third);
+    Node *current = head;
+    while (current != NULL)
+    {
+        Node *next = current->next;
+        free(current);
+        current = next;
+    }
     
     return 0;
 }
