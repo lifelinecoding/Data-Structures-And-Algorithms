@@ -30,6 +30,9 @@ The topics are organized systematically to mirror our class progression:
     ├── Singly Linked List/
     ├── Doubly Linked List/
     ├── Circular Linked List/
+├── 04-Stack/
+    ├── Implementation Using Array/
+    ├── Implementation Using Linked List/
 ```
 
 ---
