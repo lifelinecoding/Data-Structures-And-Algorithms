@@ -12,7 +12,7 @@ int CharacterFrequency(char string[], int size)
         return 0;
     }
 
-    for (int i = 0; i <= size; i++)
+    for (int i = 0; i < size; i++)
     {
         char ch = string[i];
         int count = 0;
@@ -24,11 +24,12 @@ int CharacterFrequency(char string[], int size)
             flag = 1;
         }
 
-        if(string[i] == ' '){
+        if (string[i] == ' ')
+        {
             continue;
         }
 
-        for (int j = i + 1; j <= size; j++)
+        for (int j = i + 1; j < size; j++)
         {
             if ((string[i] == string[j]) && visited[j] != 1)
             {
@@ -37,7 +38,8 @@ int CharacterFrequency(char string[], int size)
             }
         }
 
-        if(flag){
+        if (flag)
+        {
             printf("%c - %d\n", string[i], count);
         }
     }
@@ -45,8 +47,9 @@ int CharacterFrequency(char string[], int size)
 
 int main()
 {
-    char string[] = "Hello World";
+    char string[] = "Hi I am a programmer";
     int size = strlen(string);
+    // printf("%d", size);
     CharacterFrequency(string, size);
     return 0;
 }
