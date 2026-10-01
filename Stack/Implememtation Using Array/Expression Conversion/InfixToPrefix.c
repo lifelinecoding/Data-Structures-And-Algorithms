@@ -1,6 +1,7 @@
 // Online C compiler to run C program online
 #include <stdio.h>
 #include <ctype.h>
+#include <string.h>
 #define MAX 100
 
 struct Stack
@@ -65,7 +66,7 @@ char pop(Stack *s)
 // Check if character is an operator
 int isOperator(char ch)
 {
-    return ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '%' || ch == '^';
+    return ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '^';
 }
 
 // Function to return operator precedence
@@ -78,7 +79,6 @@ int precedence(char op)
         return 1;
     case '*':
     case '/':
-    case '%':
         return 2;
     case '^':
         return 3;
@@ -87,82 +87,89 @@ int precedence(char op)
     }
 }
 
-void infixToPostfix(char *infix, char *postfix)
+void infixToPrefix(char *infix, char *prefix)
 {
     Stack st;
     initialize(&st);
-    int i = 0, j = 0;
+    int length = strlen(infix);
+    int j = length - 1;
+    prefix[length] = '\0';
     char ch;
 
-    // Scanning the expression from left to right.
-    while (infix[i] != '\0')
+    // Scan the expression from right to left.
+    for (int i = length - 1; i >= 0; i--)
     {
         ch = infix[i];
-
         if (isalnum(ch))
         {
-            postfix[j++] = ch;
-        }
-        else if (ch == '[' || ch == '{' || ch == '(')
-        {
-            push(&st, ch);
+            prefix[j--] = ch;
         }
         else if (ch == ']' || ch == '}' || ch == ')')
         {
-            if (ch == ']')
-            {
-                while (!isEmpty(&st) && peek(&st) != '[')
-                {
-                    postfix[j++] = pop(&st);
-                }
-            }
-            else if (ch == '}')
-            {
-                while (!isEmpty(&st) && peek(&st) != '{')
-                {
-                    postfix[j++] = pop(&st);
-                }
-            }
-            else if (ch == ')')
-            {
-                while (!isEmpty(&st) && peek(&st) != '(')
-                {
-                    postfix[j++] = pop(&st);
-                }
-            }
-            pop(&st);
-        }
-
-        else if (isOperator(ch))
-        {
-            while (!isEmpty(&st) && (precedence(peek(&st)) > precedence(ch) || precedence(peek(&st)) == precedence(ch) && ch != '^'))
-            {
-                postfix[j++] = pop(&st);
-            }
-
             push(&st, ch);
         }
+        else if (ch == '[' || ch == '{' || ch == '(')
+        {
+            if (ch == '[')
+            {
+                while (!isEmpty(&st) && peek(&st) != ']')
+                {
+                    prefix[j--] = pop(&st);
+                }
+            }
+            else if (ch == '{')
+            {
+                while (!isEmpty(&st) && peek(&st) != '}')
+                {
+                    prefix[j--] = pop(&st);
+                }
+            }
+            else if (ch == '(')
+            {
+                while (!isEmpty(&st) && peek(&st) != ')')
+                {
+                    prefix[j--] = pop(&st);
+                }
+            }
 
-        i++;
+            pop(&st);
+        }
+        else if (isOperator(ch))
+        {
+            while (!isEmpty(&st) && (
+                (ch == '^' && precedence(ch) <= precedence(peek(&st))) ||
+                (ch != '^' && precedence(ch) < precedence(peek(&st)))
+            ))
+            {
+                prefix[j--] = pop(&st);
+            }
+            push(&st, ch);
+        }
     }
 
-    // Poping all the remaining elements from the stack and adding them to postfix expression.
-    while (st.top >= 0)
+    // Poping all the remaining elements from the stack and adding them to prefix expression.
+    while (!isEmpty(&st))
     {
-        postfix[j++] = pop(&st);
+        prefix[j--] = pop(&st);
     }
-    postfix[j] = '\0';
+
+    // Trim the string because brackets has been removed.
+    int start = j + 1;
+    int k = 0;
+    while (start <= length)
+    {
+        prefix[k++] = prefix[start++];
+    }
 }
 
 int main()
 {
-    // char infix[MAX] = "(A+B)*[C*{P*Q}/Y]";
-    char infix[MAX] = "z+[(y*x)-(w/v+u)*t]*s";
-    char postfix[MAX];
+    char infix[MAX] = "(A+B)*[C*{P*Q}/Y]";
+    // char infix[MAX] = "(A+B)-(C*D)";
+    char prefix[MAX];
 
-    infixToPostfix(infix, postfix);
+    infixToPrefix(infix, prefix);
 
-    printf("%s", postfix);
-
+    printf("%s", prefix);
     return 0;
 }
