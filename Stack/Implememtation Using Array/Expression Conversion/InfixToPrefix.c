@@ -66,7 +66,7 @@ char pop(Stack *s)
 // Check if character is an operator
 int isOperator(char ch)
 {
-    return ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '^';
+    return ch == '+' || ch == '-' || ch == '*' || ch == '%' || ch == '/' || ch == '^';
 }
 
 // Function to return operator precedence
