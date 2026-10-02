@@ -73,8 +73,7 @@ int precedence(char op){
     }
 }
 
-void infixToPostfix(char *infix, char *postfix)
-{
+void InfixToPostfix(char *infix, char *postfix){
     Stack st;
     initialize(&st);
     int i = 0, j = 0;
@@ -92,20 +91,17 @@ void infixToPostfix(char *infix, char *postfix)
         }
         else if (ch == ']' || ch == '}' || ch == ')'){
             if (ch == ']'){
-                while (!isEmpty(&st) && peek(&st) != '[')
-                {
+                while (!isEmpty(&st) && peek(&st) != '['){
                     postfix[j++] = pop(&st);
                 }
             }
             else if (ch == '}'){
-                while (!isEmpty(&st) && peek(&st) != '{')
-                {
+                while (!isEmpty(&st) && peek(&st) != '{'){
                     postfix[j++] = pop(&st);
                 }
             }
             else if (ch == ')'){
-                while (!isEmpty(&st) && peek(&st) != '(')
-                {
+                while (!isEmpty(&st) && peek(&st) != '('){
                     postfix[j++] = pop(&st);
                 }
             }
@@ -113,8 +109,7 @@ void infixToPostfix(char *infix, char *postfix)
         }
 
         else if (isOperator(ch)){
-            while (!isEmpty(&st) && (precedence(peek(&st)) > precedence(ch) || precedence(peek(&st)) == precedence(ch) && ch != '^'))
-            {
+            while (!isEmpty(&st) && (precedence(peek(&st)) > precedence(ch) || precedence(peek(&st)) == precedence(ch) && ch != '^')){
                 postfix[j++] = pop(&st);
             }
 
@@ -136,7 +131,7 @@ int main(){
     char infix[MAX] = "z+[(y*x)-(w/v+u)*t]*s";
     char postfix[MAX];
 
-    infixToPostfix(infix, postfix);
+    InfixToPostfix(infix, postfix);
 
     printf("Infix Expression: %s\n", infix);
     printf("Postfix Expression: %s\n", postfix);

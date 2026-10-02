@@ -73,7 +73,7 @@ int precedence(char op){
     }
 }
 
-void infixToPrefix(char *infix, char *prefix){
+void InfixToPrefix(char *infix, char *prefix){
     Stack st;
     initialize(&st);
     int length = strlen(infix);
@@ -92,20 +92,17 @@ void infixToPrefix(char *infix, char *prefix){
         }
         else if (ch == '[' || ch == '{' || ch == '('){
             if (ch == '['){
-                while (!isEmpty(&st) && peek(&st) != ']')
-                {
+                while (!isEmpty(&st) && peek(&st) != ']'){
                     prefix[j--] = pop(&st);
                 }
             }
             else if (ch == '{'){
-                while (!isEmpty(&st) && peek(&st) != '}')
-                {
+                while (!isEmpty(&st) && peek(&st) != '}'){
                     prefix[j--] = pop(&st);
                 }
             }
             else if (ch == '('){
-                while (!isEmpty(&st) && peek(&st) != ')')
-                {
+                while (!isEmpty(&st) && peek(&st) != ')'){
                     prefix[j--] = pop(&st);
                 }
             }
@@ -142,7 +139,7 @@ int main()
     // char infix[MAX] = "(A+B)-(C*D)";
     char prefix[MAX];
 
-    infixToPrefix(infix, prefix);
+    InfixToPrefix(infix, prefix);
 
     printf("Infix Expression: %s\n", infix);
     printf("Prefix Expression: %s\n", prefix);

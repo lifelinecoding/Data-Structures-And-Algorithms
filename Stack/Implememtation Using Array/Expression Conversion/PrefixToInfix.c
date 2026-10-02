@@ -44,7 +44,7 @@ int isOperator(char ch){
     return ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '%' || ch == '^';
 }
 
-void prefixToInfix(char *prefix, char *infix){
+void PrefixToInfix(char *prefix, char *infix){
     Stack st;
     initialize(&st);
 
@@ -80,7 +80,7 @@ int main(){
     char prefix[MAX] = "*+AB-CD";
     char infix[MAX];
 
-    prefixToInfix(prefix, infix);
+    PrefixToInfix(prefix, infix);
 
     printf("Prefix Expression: %s\n", prefix);
     printf("Infix Expression: %s\n", infix);
