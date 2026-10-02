@@ -3,57 +3,46 @@
 #include <ctype.h>
 #define MAX 100
 
-struct Stack
-{
-    int top;
+struct Stack{
     char items[MAX];
+    int top;
 };
 
 typedef struct Stack Stack;
 
 // Function to initialize an empty stack
-void initialize(Stack *s)
-{
+void initialize(Stack *s){
     s->top = -1;
 }
 
-int isFull(Stack *s)
-{
-    if (s->top == MAX - 1)
-    {
+int isFull(Stack *s){
+    if (s->top == MAX - 1){
         return 1;
     }
 
     return 0;
 }
 
-int isEmpty(Stack *s)
-{
-    if (s->top < 0)
-    {
+int isEmpty(Stack *s){
+    if (s->top < 0){
         return 1;
     }
 
     return 0;
 }
 
-char peek(Stack *s)
-{
+char peek(Stack *s){
     return s->items[s->top];
 }
 
-void push(Stack *s, int item)
-{
-    if (!isFull(s))
-    {
+void push(Stack *s, int item){
+    if (!isFull(s)){
         s->items[++(s->top)] = item;
     }
 }
 
-char pop(Stack *s)
-{
-    if (!isEmpty(s))
-    {
+char pop(Stack *s){
+    if (!isEmpty(s)){
         char value = (s->items[(s->top)--]);
         return value;
     }
@@ -63,16 +52,13 @@ char pop(Stack *s)
 }
 
 // Check if character is an operator
-int isOperator(char ch)
-{
+int isOperator(char ch){
     return ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '%' || ch == '^';
 }
 
 // Function to return operator precedence
-int precedence(char op)
-{
-    switch (op)
-    {
+int precedence(char op){
+    switch (op){
     case '+':
     case '-':
         return 1;
@@ -95,36 +81,29 @@ void infixToPostfix(char *infix, char *postfix)
     char ch;
 
     // Scanning the expression from left to right.
-    while (infix[i] != '\0')
-    {
+    while (infix[i] != '\0'){
         ch = infix[i];
 
-        if (isalnum(ch))
-        {
+        if (isalnum(ch)){
             postfix[j++] = ch;
         }
-        else if (ch == '[' || ch == '{' || ch == '(')
-        {
+        else if (ch == '[' || ch == '{' || ch == '('){
             push(&st, ch);
         }
-        else if (ch == ']' || ch == '}' || ch == ')')
-        {
-            if (ch == ']')
-            {
+        else if (ch == ']' || ch == '}' || ch == ')'){
+            if (ch == ']'){
                 while (!isEmpty(&st) && peek(&st) != '[')
                 {
                     postfix[j++] = pop(&st);
                 }
             }
-            else if (ch == '}')
-            {
+            else if (ch == '}'){
                 while (!isEmpty(&st) && peek(&st) != '{')
                 {
                     postfix[j++] = pop(&st);
                 }
             }
-            else if (ch == ')')
-            {
+            else if (ch == ')'){
                 while (!isEmpty(&st) && peek(&st) != '(')
                 {
                     postfix[j++] = pop(&st);
@@ -133,8 +112,7 @@ void infixToPostfix(char *infix, char *postfix)
             pop(&st);
         }
 
-        else if (isOperator(ch))
-        {
+        else if (isOperator(ch)){
             while (!isEmpty(&st) && (precedence(peek(&st)) > precedence(ch) || precedence(peek(&st)) == precedence(ch) && ch != '^'))
             {
                 postfix[j++] = pop(&st);
@@ -147,22 +125,21 @@ void infixToPostfix(char *infix, char *postfix)
     }
 
     // Poping all the remaining elements from the stack and adding them to postfix expression.
-    while (st.top >= 0)
-    {
+    while (st.top >= 0){
         postfix[j++] = pop(&st);
     }
     postfix[j] = '\0';
 }
 
-int main()
-{
+int main(){
     // char infix[MAX] = "(A+B)*[C*{P*Q}/Y]";
     char infix[MAX] = "z+[(y*x)-(w/v+u)*t]*s";
     char postfix[MAX];
 
     infixToPostfix(infix, postfix);
 
-    printf("%s", postfix);
+    printf("Infix Expression: %s\n", infix);
+    printf("Postfix Expression: %s\n", postfix);
 
     return 0;
 }
