@@ -32,7 +32,7 @@ The topics are organized systematically to mirror our class progression:
     ├── Circular Linked List/
 ├── 04-Stack/
     ├── Implementation Using Array/
-        |-- Expression Conversion
+        ├── Expression Conversion
     ├── Implementation Using Linked List/
 ├── Problems/ 
 ```
