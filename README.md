@@ -34,6 +34,9 @@ The topics are organized systematically to mirror our class progression:
     ├── Implementation Using Array/
         ├── Expression Conversion
     ├── Implementation Using Linked List/
+├── 05-Queue/
+    ├── Implementation Using Array/
+    ├── Implementation Using Linked List/
 ├── Problems/ 
 ```
 
@@ -51,7 +54,7 @@ The topics are organized systematically to mirror our class progression:
 1. **Clone the Repository:**
 
     ```bash
-    git clone [https://github.com/lifelinecoding/Data-Structures-And-Algorithms.git](https://github.com/lifelinecoding/Data-Structures-And-Algorithms.git)
+    git clone https://github.com/lifelinecoding/Data-Structures-And-Algorithms.git
     ```
 
 2. **Navigate to Topic Folders:** Browse through the specific folder discussed in class.
