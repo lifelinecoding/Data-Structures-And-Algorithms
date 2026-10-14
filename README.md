@@ -37,6 +37,16 @@ The topics are organized systematically to mirror our class progression:
 ├── 05-Queue/
     ├── Implementation Using Array/
     ├── Implementation Using Linked List/
+├── 06-Tree/
+    ├── Implementation Using Array/
+    ├── Linked Implementation/
+├── 07-Graph/
+    ├── Adjacency Matrix Implementation/
+    ├── Adjacency List Implementation/
+├── 08-Hashing/
+    ├── Open Hashing/
+    ├── Closed hashing/
+├── 09-Sorting/
 ├── Problems/ 
 ```
 
