@@ -31,6 +31,17 @@ Node* CreateNode(int data){
     return newNode;
 }
 
+// Print the tree
+void printTree(Node *root){
+    Node *current = root;
+    if(current != NULL){
+        printf("%d ", current->key);
+        printTree(current->first_child);
+        printTree(current->second_child);
+        printTree(current->third_child);
+    }
+}
+
 int main(){
     Tree t1;
     t1.root = NULL;
@@ -52,6 +63,9 @@ int main(){
 
     // Level 4
     t1.root->first_child->first_child->first_child = CreateNode(9);
+
+    // print the nodes.
+    printTree(t1.root);
 
     // Free all nodes
     free(t1.root);
