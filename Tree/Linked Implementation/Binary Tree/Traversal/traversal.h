@@ -1,5 +1,6 @@
 #ifndef TRAVERSAL_H
-#include"definition.h"
+#define TRAVERSAL_H
+#include"../definition.h"
 #include<stdio.h>
 
 // Pre-Order traversal of a binary tree

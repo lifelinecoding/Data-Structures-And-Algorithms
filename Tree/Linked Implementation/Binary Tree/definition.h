@@ -1,4 +1,5 @@
 #ifndef DEFINITION_H
+#define DEFINITION_H
 
 typedef struct Tree{
     int key;
@@ -6,4 +7,4 @@ typedef struct Tree{
     struct Tree *right;
 } Tree;
 
-#endif
+#endif  // CLosing for "DEFINITION_H"
