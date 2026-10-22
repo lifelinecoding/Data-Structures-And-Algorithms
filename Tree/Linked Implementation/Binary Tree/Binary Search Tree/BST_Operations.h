@@ -4,6 +4,22 @@
 #include<stdio.h>
 #include<stdlib.h>
 
+// Function to find maximum in a binary search tree.
+Tree * MaxInBST(Tree *root){
+    while(root != NULL && root->right != NULL){
+        root = root->right;
+    }
+    return root;
+}
+
+// Function to find minimum in a binary search tree.
+Tree * MinInBST(Tree *root){
+    while(root != NULL && root->left != NULL){
+        root = root->left;
+    }
+    return root;
+}
+
 // Function to search a node in Binary search tree.
 Tree *SearchBST(Tree *root, int key){
 
