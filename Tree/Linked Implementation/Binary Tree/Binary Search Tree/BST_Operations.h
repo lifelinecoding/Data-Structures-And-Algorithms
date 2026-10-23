@@ -20,6 +20,42 @@ Tree * MinInBST(Tree *root){
     return root;
 }
 
+// Function to find In-Order Successor of a node in binary search tree.
+Tree *InOrderSuccessor(Tree *root, int key){
+    Tree *successor = NULL;
+    if(root != NULL && root->right != NULL) return MinInBST(root->right);
+    else if(root != NULL && root->right == NULL){
+        while(root->key != key){
+            if(key < root->key){
+                successor = root;
+                root = root->left;
+            }
+            else{
+                root = root->right;
+            }
+        }
+    }
+    return successor;
+}
+
+// Function to find In-Order Successor of a node in binary search tree.
+Tree *InOrderPredcessor(Tree *root, int key){
+    Tree *predcessor = NULL;
+    if(root != NULL && root->left != NULL) return MaxInBST(root->left);
+    else if(root != NULL && root->left == NULL){
+        while(root->key != key){
+            if(key > root->key){
+                predcessor = root;
+                root = root->right;
+            }
+            else{
+                root = root->left;
+            }
+        }
+    }
+    return predcessor;
+}
+
 // Function to search a node in Binary search tree.
 Tree *SearchBST(Tree *root, int key){
 
