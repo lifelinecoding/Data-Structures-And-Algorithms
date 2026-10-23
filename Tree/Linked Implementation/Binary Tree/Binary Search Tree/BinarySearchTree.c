@@ -18,6 +18,14 @@ int main(){
 
     printf("In-Order Traversal: ");
     InOrder(root);
+    printf("\n");
+
+    root = DeleteBST(root, 10);
+    root = DeleteBST(root, 52);
+    root = DeleteBST(root, 55);
+
+    printf("In-Order Traversal: ");
+    InOrder(root);
     
 return 0;
 }

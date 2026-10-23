@@ -95,4 +95,40 @@ Tree *InsertBST(Tree *root, int key){
     return root;
 }
 
+// Function to insert a new node in binary search tree
+Tree *DeleteBST(Tree *root, int key){
+    Tree *temp = NULL;
+    Tree *successor = NULL;
+    if(root == NULL) return root;
+
+    if(root->key == key){
+        if(root->left == NULL && root->right == NULL){
+            free(root);
+            return NULL;
+        }
+        else if(root->left != NULL){
+            temp = root->left;
+            free(root);
+            return temp;
+        }
+        else if(root->right != NULL){
+            temp = root->right;
+            free(root);
+            return temp;
+        }
+        else{
+            successor = InOrderSuccessor(root, key);
+            root->key = successor->key;
+            root->right = DeleteBST(root->right, successor->key);
+        }
+    }
+    else if(key < root->key){
+        root->left = DeleteBST(root->left, key);
+    }
+    else{
+        root->right = DeleteBST(root->right, key);
+    }
+    return root;
+}
+
 #endif      // closing for "BST_OPERATIONS_H"
