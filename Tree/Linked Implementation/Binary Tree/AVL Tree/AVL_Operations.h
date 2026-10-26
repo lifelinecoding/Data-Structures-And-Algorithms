@@ -21,7 +21,7 @@ int maximum(int x, int y){
 //Helper function to get the height of a subtree.
 int height(AVL_Tree *node){
     if(node == NULL) return 0;
-    return node->height;
+    return node->height + 1;
 }
 
 //Helper function to get Balance Factor of a node.
@@ -38,8 +38,8 @@ AVL_Tree * RotateRight(AVL_Tree *node){
     node->left = y;
 
     // Updated the height.
-    node->height = maximum(height(node->left), height(node->right)) + 1;
-    x->height = maximum(height(x->left), height(x->right)) + 1;
+    node->height = maximum(height(node->left), height(node->right));
+    x->height = maximum(height(x->left), height(x->right));
 
     return x;
 }
@@ -53,8 +53,8 @@ AVL_Tree * RotateLeft(AVL_Tree *node){
     node->right = y;
 
     // Updated the height.
-    node->height = maximum(height(node->left), height(node->right)) + 1;
-    x->height = maximum(height(x->left), height(x->right)) + 1;
+    node->height = maximum(height(node->left), height(node->right));
+    x->height = maximum(height(x->left), height(x->right));
 
     return x;
 }
@@ -76,7 +76,7 @@ AVL_Tree *InsertAVL(AVL_Tree *root, int key){
     }
 
     // Update the height after insertion.
-    root->height = maximum(height(root->left), height(root->right)) + 1;
+    root->height = maximum(height(root->left), height(root->right));
 
     int balance = balanceFactor(root);
     
