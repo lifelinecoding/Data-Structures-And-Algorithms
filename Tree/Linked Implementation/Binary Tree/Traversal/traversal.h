@@ -30,4 +30,13 @@ void PostOrder(Tree *root){
     }
 }
 
+// Pre-Order traversal of a AVL tree
+void PreOrderAVL(AVL_Tree *root){
+    if(root != NULL){
+        printf("%d ", root->key);        // Root Node
+        PreOrderAVL(root->left);        // Left Subtree
+        PreOrderAVL(root->right);      // Right Subtree
+    }
+}
+
 #endif
