@@ -3,7 +3,6 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include"../definition.h"
-#include"../Binary Search Tree/BST_Operations.h"
 
 // Helper function to initialize a node.
 AVL_Tree *initialize(AVL_Tree *node, int key){
@@ -58,6 +57,33 @@ AVL_Tree * RotateLeft(AVL_Tree *node){
 
     return x;
 }
+
+// Function to find maximum in a binary search tree.
+AVL_Tree * MaxInAVL(AVL_Tree *root){
+    while(root != NULL && root->right != NULL){
+        root = root->right;
+    }
+    return root;
+}
+
+// Function to find In-Order Successor of a node in binary search tree.
+AVL_Tree *InOrderPredcessorAVL(AVL_Tree *root, int key){
+    AVL_Tree *predcessor = NULL;
+    if(root != NULL && root->left != NULL) return MaxInAVL(root->left);
+    else if(root != NULL && root->left == NULL){
+        while(root->key != key){
+            if(key > root->key){
+                predcessor = root;
+                root = root->right;
+            }
+            else{
+                root = root->left;
+            }
+        }
+    }
+    return predcessor;
+}
+
 //Function to insert a new node in AVL tree
 AVL_Tree *InsertAVL(AVL_Tree *root, int key){
     if(root == NULL){
@@ -94,7 +120,61 @@ AVL_Tree *InsertAVL(AVL_Tree *root, int key){
 
     return root;
 }
-//TODO: Function to delete a new node in AVL tree
+//Function to delete a new node in AVL tree
+AVL_Tree *DeleteAVL(AVL_Tree *root, int key){
+    AVL_Tree *temp = NULL;
+    AVL_Tree *predcessor = NULL;
+
+    if(root == NULL) return root;
+
+    if(root->key == key){
+        if(root->left == NULL && root->right == NULL){
+            free(root);
+            return NULL;
+        }
+        else if(root->left != NULL && root->right == NULL){
+            temp = root->left;
+            free(root);
+            return temp;
+        }
+        else if(root->right != NULL && root->left == NULL){
+            temp = root->right;
+            free(root);
+            return temp;
+        }
+        else{
+            predcessor = InOrderPredcessorAVL(root, key);
+            root->key = predcessor->key;
+            root->left = DeleteAVL(root->left, predcessor->key);
+        }
+    }
+    else if(key < root->key){
+        root->left = DeleteAVL(root->left, key);
+    }
+    else{
+        root->right = DeleteAVL(root->right, key);
+    }
+
+    // Update the height
+    root->height = maximum(height(root->left), height(root->right));
+
+    // Balance Factor.
+    int balance = balanceFactor(root);
+
+    // Rotation logic..
+    if(balance > 1 && balanceFactor(root->left) >= 0) return RotateRight(root);
+    else if(balance < -1 && balanceFactor(root->right) <= 0) return RotateLeft(root);
+    else if(balance > 1 && balanceFactor(root->left) < 0){
+        root->left = RotateLeft(root->left);
+        return RotateRight(root);
+    }
+    else if(balance < -1 && balanceFactor(root->right) > 0){
+        root->right = RotateRight(root->right);
+        return RotateLeft(root);
+    }
+    
+    return root;
+}
 
 
 #endif      // Closing for AVL_OPERATIONS_H

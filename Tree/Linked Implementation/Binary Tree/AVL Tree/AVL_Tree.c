@@ -1,7 +1,6 @@
 #include<stdio.h>
 #include<windows.h>
 #include"AVL_Operations.h"
-#include"../Binary Search Tree/BST_Operations.h"
 #include"../definition.h"
 #include"../Traversal/traversal.h"
 
@@ -15,6 +14,10 @@ int main(){
     root = InsertAVL(root, 18);
     root = InsertAVL(root, 2);
 
+    PreOrderAVL(root);
+    printf("\n");
+    root = DeleteAVL(root, 10);
+    root = DeleteAVL(root, 15);
     PreOrderAVL(root);
 
 return 0;
