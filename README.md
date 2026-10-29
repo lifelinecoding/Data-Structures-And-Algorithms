@@ -24,7 +24,7 @@ This repository is a collection of small, hands-on examples for learning fundame
 | [Stack](./Stack/) | Array and linked-list-based stack implementations, Infix, Postfix, and Prefix expression conversions. |
 | [Queue](./Queue/) | Simple and circular array queues, Linked-list-based queue. |
 | [Tree](./Tree/) | Array-based tree storage and traversal, Linked tree, Binary tree, Separate header .h files for Preorder, Inorder Postorder traversal helpers and definition, Implementation and Insertion/Deletion and other operations in Binary Search Tree, AVL tree, Separate header file for AVL tree operations and rotations (LL, LR, RL and RR rotations), Insertion/Deletion in AVL tree.|
-| [Graph](./Graph/) |Under Progress.......|
+| [Graph](./Graph/) |Adjacency Matrix Representation, Adjacency List Representation, Weighted & Unweighted graph, Graph traversal (Breadth First Search, Depth First Search), Spanning Tree, Minimum Spanning Tree, Prims Algorithm, Krushkal Algorithm.|
 | [Hashing](./Hashing/) |Under Progress.......|
 | [Sorting](./Sorting/) | Bubble Sort, Counting Sort, Heap Sort, Insertion Sort, Merge Sort, Quick Sort, Radix Sort, and Selection Sort. |
 | [Problems](./Problems/) | Character frequency, Element counting, Odd-occurrence detection, Parentheses matching, Linked-list palindrome exercise. |
