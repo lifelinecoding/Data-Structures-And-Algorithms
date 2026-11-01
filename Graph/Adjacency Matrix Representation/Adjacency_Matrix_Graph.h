@@ -56,7 +56,7 @@ void removeEdge(Matrix_Graph *graph, int source, int destination){
 }
 // Function to check if an edge exist between two nodes (graph, source, destination)
 bool isEdgeExist(Matrix_Graph *graph, int source, int destination){
-    if(graph == NULL) return;
+    if(graph == NULL) return false;
     if(source < 0 || source >= graph->vertices || destination < 0 || destination >= graph->vertices){
         printf("Invalid source or destination.\n");
         return false;
@@ -65,7 +65,7 @@ bool isEdgeExist(Matrix_Graph *graph, int source, int destination){
 }
 // Function to get weight of an edge (graph, source, destination)
 int weight(Matrix_Graph *graph, int source, int destination){
-    if(graph == NULL) return;
+    if(graph == NULL) return 0;
     if(source < 0 || source >= graph->vertices || destination < 0 || destination >= graph->vertices){
         printf("Invalid source or destination.\n");
         return 0;
@@ -86,8 +86,53 @@ int neighbors(Matrix_Graph *graph, int vertex){
     }
     return neighbor;
 }
-// TODO: Funtion to get degree of a vertex (graph, vertex).
-// TODO: Function to display adjacency matrix of the graph(graph).
+// Funtion to get degree of a vertex (graph, vertex).
+int inDegree(Matrix_Graph *graph, int vertex){
+    int indegree = 0;
+    if(graph == NULL) return 0;
+    if(vertex < 0 || vertex >= graph->vertices) return 0;
+
+    for(int i = 0; i < graph->vertices; i++){
+        if(graph->matrix[i][vertex] != 0) indegree++;
+    }
+    return indegree;
+}
+
+int outDegree(Matrix_Graph *graph, int vertex){
+    int outdegree = 0;
+    if(graph == NULL) return 0;
+    if(vertex < 0 || vertex >= graph->vertices) return 0;
+
+    for(int i = 0; i < graph->vertices; i++){
+        if(graph->matrix[vertex][i] != 0) outdegree++;
+    }
+    return outdegree;
+}
+
+int degree(Matrix_Graph *graph, int vertex){
+    if(graph == NULL) return 0;
+    if(vertex < 0 || vertex >= graph->vertices) return 0;
+
+    if(graph->isDirected) return inDegree(graph, vertex) + outDegree(graph, vertex);
+    else return neighbors(graph, vertex);
+}
+// Function to display adjacency matrix of the graph(graph).
+void displayAdjacencyMatrix(Matrix_Graph *graph){
+    if(graph == NULL) return;
+    printf("   ");
+    for(int i = 0; i < graph->vertices; i++){
+        printf("%d ", i);
+    }
+    printf("\n.................\n");
+
+    for(int i = 0; i < graph->vertices; i++){
+        printf("%d |", i);
+        for(int j = 0; j < graph->vertices; j++){
+            printf("%d ", graph->matrix[i][j]);
+        }
+        printf("\n");
+    }
+}
 // TODO: Graph traversal using breadth first search.
 // TODO: Graph traversal using depth first search.
 
