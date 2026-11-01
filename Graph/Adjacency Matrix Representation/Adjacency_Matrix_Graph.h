@@ -134,6 +134,23 @@ void displayAdjacencyMatrix(Matrix_Graph *graph){
     }
 }
 // TODO: Graph traversal using breadth first search.
-// TODO: Graph traversal using depth first search.
+// Graph traversal using depth first search.
+void DepthFirstSearchUtility(Matrix_Graph *graph, int source, bool visited[]){
+
+    printf("%d ", source);
+    visited[source] = true;
+
+    for(int i = 0;  i < graph->vertices; i++){
+        if(graph->matrix[source][i] != 0 && !visited[i]) DepthFirstSearchUtility(graph, i, visited);
+    }
+}
+
+void DepthFirstSearchMatrix(Matrix_Graph *graph, int source){
+    if(graph == NULL) return;
+    if(source < 0 || source >= graph->vertices) return;
+    
+    bool *visited = (bool*)calloc(sizeof(bool), graph->vertices);
+    DepthFirstSearchUtility(graph, source, visited);
+}
 
 #endif // Closing for ADJACENCY_MATRIX_GRAPH

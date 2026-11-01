@@ -14,13 +14,14 @@ int main(){
     addEdge(graph, 3, 4, 1);
     addEdge(graph, 4, 3, 1);
 
-    // printf("%d ", isEdgeExist(graph, 2, 3));
-    // printf("%d ", neighbors(graph, 3));
+    printf("%d ", isEdgeExist(graph, 2, 3));
+    printf("%d ", neighbors(graph, 3));
     
     removeEdge(graph, 3, 4);
-    // printf("%d ", degree(graph, 3));
+    printf("%d ", degree(graph, 3));
 
     displayAdjacencyMatrix(graph);
+    DepthFirstSearchMatrix(graph, 0);
     freeGraph(graph);
 return 0;
 }
