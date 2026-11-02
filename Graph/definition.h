@@ -9,4 +9,16 @@ typedef struct Matrix_Graph{
     int **matrix;
 } Matrix_Graph;
 
+typedef struct Node{
+    int vertex;
+    int weight;
+    struct Node* next;
+} Node;
+
+typedef struct List_Graph{
+    int vertices;
+    bool isDirected;
+    Node **adjList;
+} List_Graph;
+
 #endif // Closing for DEFINITION_H
