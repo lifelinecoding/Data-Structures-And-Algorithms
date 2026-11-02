@@ -22,6 +22,7 @@ int main(){
 
     displayAdjacencyMatrix(graph);
     DepthFirstSearchMatrix(graph, 0);
+    BreadthFirstSearchMatrix(graph, 2);
     freeGraph(graph);
 return 0;
 }
