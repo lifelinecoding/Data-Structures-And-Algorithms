@@ -42,7 +42,7 @@ void addEdge(Matrix_Graph *graph, int source, int destination, int weight){
     // Checking the graph is directed or not for bi-directional edges.
     if(!graph->isDirected) graph->matrix[destination][source] = weight;
 }
-// Function to add a remove edge(graph, source, destination)
+// Function to  remove edge(graph, source, destination)
 void removeEdge(Matrix_Graph *graph, int source, int destination){
     if(graph == NULL) return;
     if(source < 0 || source >= graph->vertices || destination < 0 || destination >= graph->vertices){
