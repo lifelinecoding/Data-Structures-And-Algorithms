@@ -13,7 +13,7 @@ struct Node
 // Type definition
 typedef struct Node Node;
 
-// Function to delete a node at specified position in doublly linked list.
+// Function to delete a node based on data in doublly linked list.
 Node *DeleteOnData(Node *head, int data)
 {
     Node *current = head;

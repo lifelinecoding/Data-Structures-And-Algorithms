@@ -12,7 +12,7 @@ struct Node
 // Type definition
 typedef struct Node Node;
 
-// Function to delete a node from a linked list at a specified position.
+// Function to delete a node from a linked list abased on data.
 Node *DeleteOnData(Node *head, int data)
 {
     Node *current = head;
