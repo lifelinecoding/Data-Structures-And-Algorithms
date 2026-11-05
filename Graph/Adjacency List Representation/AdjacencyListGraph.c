@@ -15,9 +15,10 @@ int main(){
     addEdge(graph, 3, 4, 1);
 
     // removeEdge(graph, 3, 4);
-    printf("%d ", isEdgeExist(graph, 1, 4));
+    // printf("%d ", isEdgeExist(graph, 1, 4));
 
     // displayAdjacencyList(graph);
+    DepthFirstSearchList(graph, 1);
     freeGraph(graph);
 return 0;
 }

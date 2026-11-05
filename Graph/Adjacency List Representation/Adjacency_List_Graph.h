@@ -223,6 +223,25 @@ void displayAdjacencyList(List_Graph *graph){
     }
 }
 //TODO: Graph traversal using breadth first search.
-//TODO: Graph traversal using depth first search.
+// Graph traversal using depth first search.
+void DepthFirstSearchUtility(List_Graph *graph, int source, bool visited[]){
+    printf("%d ", source);
+    visited[source] = true;
+
+    Node *current = graph->adjList[source];
+    while(current != NULL){
+        if(!visited[current->vertex]) DepthFirstSearchUtility(graph, current->vertex, visited);
+        current = current->next;
+    }
+}
+
+void DepthFirstSearchList(List_Graph *graph, int source){
+    if(graph == NULL) return;
+    if(source < 0 || source >= graph->vertices) return;
+
+    bool *visited = (bool*)calloc(sizeof(bool), graph->vertices);
+    DepthFirstSearchUtility(graph, source, visited);
+    free(visited);
+}
 
 #endif // CLosing for ADJACENCY_LIST_GRAPH
