@@ -52,6 +52,18 @@ Node *DeleteInAdjacencyList(Node *head, int vertex){
     return head;
 }
 
+// Function to search an element in linked list.
+bool SearchInAdjacencyList(Node *head, int vertex){
+    Node *current = head;
+    while (current != NULL){
+        if(current->vertex == vertex){
+            return true;
+        }
+        current = current->next;
+    }
+    return false;
+}
+
 // Create Graph function(Vertices(int), isDirected(boolean))
 List_Graph *createGraph(int vertices, bool isDirected){
     if(vertices <= 0){
@@ -63,8 +75,12 @@ List_Graph *createGraph(int vertices, bool isDirected){
     graph->vertices = vertices;
     graph->isDirected = isDirected;
 
-    graph->adjList = (Node**)malloc(sizeof(Node*));
-    for(int i = 0; graph->vertices; i++) graph->adjList[i] = NULL;
+    graph->adjList = (Node**)malloc(sizeof(Node*) * graph->vertices);
+    if(graph->adjList == NULL){
+        free(graph);
+        return NULL;
+    }
+    for(int i = 0; i < graph->vertices; i++) graph->adjList[i] = NULL;
     return graph;
 }
 // Free graph function(graph g)
@@ -107,10 +123,105 @@ void removeEdge(List_Graph *graph, int source, int destination){
     if(!graph->isDirected) graph->adjList[destination] = DeleteInAdjacencyList(graph->adjList[destination], source);
 }
 // Function to check if an edge exist between two nodes (graph, source, destination)
-//TODO: Function to get weight of an edge (graph, source, destination)
-//TODO: Function to get all neighbors of a vertex (graph, vertex);
-//TODO: Funtion to get degree of a vertex (graph, vertex).
-//TODO: Function to display Adjacency List of the graph (Graph).
+bool isEdgeExist(List_Graph *graph, int source, int destination){
+    if(graph == NULL) return false;
+    if(source < 0 || source >= graph->vertices || destination < 0 || destination >= graph->vertices){
+        printf("Invalid source or destination.\n");
+        return false;
+    }
+
+    return SearchInAdjacencyList(graph->adjList[source], destination);
+}
+// Function to get weight of an edge (graph, source, destination)
+int weight(List_Graph *graph, int source, int destination){
+    if(graph == NULL) return 0;
+    if(source < 0 || source >= graph->vertices || destination < 0 || destination >= graph->vertices){
+        printf("Invalid source or destination.\n");
+        return 0;
+    }
+    if(isEdgeExist(graph, source, destination)){
+        Node *current = graph->adjList[source];
+        while(current != NULL){
+            if(current->vertex == destination){
+                return current->weight;
+            }
+            current = current->next;
+        }
+    }
+}
+// Function to get all neighbors of a vertex (graph, vertex);
+void neighbors(List_Graph *graph, int vertex){
+    if(graph == NULL) return;
+    if(vertex < 0 || vertex >= graph->vertices){
+        printf("Invalid source or destination.\n");
+        return;
+    }
+
+    Node *current = graph->adjList[vertex];
+    while(current != NULL){
+        printf("%d ", current->vertex);
+        current = current->next;
+    }
+}
+// Funtion to get degree of a vertex (graph, vertex).
+int inDegree(List_Graph *graph, int vertex){
+    int indegree = 0;
+    if(graph == NULL) return 0;
+    if(vertex < 0 || vertex >= graph->vertices){
+        printf("Invalid source or destination.\n");
+        return 0;
+    }
+    for(int i = 0; i < graph->vertices; i++){
+        if(SearchInAdjacencyList(graph->adjList[i], vertex)) indegree++;
+    }
+    return indegree;
+}
+
+int outDegree(List_Graph *graph, int vertex){
+    int outdegree = 0;
+    if(graph == NULL) return 0;
+    if(vertex < 0 || vertex >= graph->vertices){
+        printf("Invalid source or destination.\n");
+        return 0;
+    }
+    Node * current = graph->adjList[vertex];
+    while(current != NULL){
+        outdegree++;
+        current = current->next;
+    }
+    return outdegree;
+}
+
+int degree(List_Graph *graph, int vertex){
+    int deg = 0;
+    if(graph == NULL) return 0;
+    if(vertex < 0 || vertex >= graph->vertices){
+        printf("Invalid source or destination.\n");
+        return 0;
+    }
+    if(!graph->isDirected){
+        Node *current = graph->adjList[vertex];
+        while(current != NULL){
+                deg++;
+            current = current->next;
+        }
+        return deg;
+    }
+    return inDegree(graph, vertex) + outDegree(graph, vertex);
+}
+// Function to display Adjacency List of the graph (Graph).
+void displayAdjacencyList(List_Graph *graph){
+    if(graph == NULL) return;
+    for(int i = 0; i < graph->vertices; i++){
+        Node *current = graph->adjList[i];
+        printf("%d |", i);
+        while(current != NULL){
+            printf("%d -> ", current->vertex);
+            current = current->next;
+        }
+        printf("NULL\n");
+    }
+}
 //TODO: Graph traversal using breadth first search.
 //TODO: Graph traversal using depth first search.
 

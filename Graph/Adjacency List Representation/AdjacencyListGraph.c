@@ -6,6 +6,18 @@
 #include"../definition.h"
 
 int main(){
-    printf("");
+    List_Graph *graph = NULL;
+    graph = createGraph(5, false);
+    if(graph == NULL) printf("Hello");
+    addEdge(graph, 1, 2, 1);
+    addEdge(graph, 2, 3, 1);
+    addEdge(graph, 0, 3, 1);
+    addEdge(graph, 3, 4, 1);
+
+    // removeEdge(graph, 3, 4);
+    printf("%d ", isEdgeExist(graph, 1, 4));
+
+    // displayAdjacencyList(graph);
+    freeGraph(graph);
 return 0;
 }
