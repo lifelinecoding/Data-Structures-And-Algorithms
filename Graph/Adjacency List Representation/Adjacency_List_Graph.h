@@ -222,7 +222,36 @@ void displayAdjacencyList(List_Graph *graph){
         printf("NULL\n");
     }
 }
-//TODO: Graph traversal using breadth first search.
+// Graph traversal using breadth first search.
+void BreadthFirstSearchUtility(List_Graph *graph, int source, bool visited[]){
+    int *queue = (int*)malloc(sizeof(int)*graph->vertices);
+    int front = -1;
+    int rear = -1;
+    if(queue == NULL) return;
+    queue[++rear] = source;
+    front++;
+
+    while(front <= rear){
+        int recent = queue[front++];
+        printf("%d ", recent);
+        visited[recent] = true;
+        Node *current = graph->adjList[recent];
+        while(current != NULL){
+            if(!visited[current->vertex]) queue[++rear] = current->vertex;
+            current = current->next;
+        };
+    }
+    free(queue);
+}
+
+void BreadthFirstSearchList(List_Graph *graph, int source){
+    if(graph == NULL) return;
+    if(source < 0 || source >= graph->vertices) return;
+    bool *visited = (bool*)calloc(sizeof(bool), graph->vertices);
+    BreadthFirstSearchUtility(graph, source, visited);
+    free(visited);
+}
+
 // Graph traversal using depth first search.
 void DepthFirstSearchUtility(List_Graph *graph, int source, bool visited[]){
     printf("%d ", source);

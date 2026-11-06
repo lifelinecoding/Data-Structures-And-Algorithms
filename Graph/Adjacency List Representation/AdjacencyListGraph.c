@@ -18,7 +18,9 @@ int main(){
     // printf("%d ", isEdgeExist(graph, 1, 4));
 
     // displayAdjacencyList(graph);
-    DepthFirstSearchList(graph, 1);
+    DepthFirstSearchList(graph, 2);
+    printf("\n");
+    BreadthFirstSearchList(graph, 2);
     freeGraph(graph);
 return 0;
 }
