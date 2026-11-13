@@ -1,7 +1,13 @@
+#ifndef OPEN_HASHING_H
+#define OPEN_HASHING_H
+
 #include<stdio.h>
 #include<stdlib.h>
 #include<stdbool.h>
 #include"definition.h"
+
+#ifndef SEPARATE_CHAINING
+#define SEPARATE_CHAINING
 
 // Helper functions for linked list operations.
 
@@ -64,7 +70,7 @@ Node *DeleteOnKey(Node *head, int key){
 }
 
 // Function to initialize hash table.
-Open_Hash_Table *createTable(Open_Hash_Table *table, int size){
+Open_Hash_Table *createHashTableOpen(Open_Hash_Table *table, int size){
     if(size <= 0) return NULL;
     table = (Open_Hash_Table*)malloc(sizeof(Open_Hash_Table));
     if(table == NULL){
@@ -79,14 +85,14 @@ Open_Hash_Table *createTable(Open_Hash_Table *table, int size){
 }
 
 // Hash function (Division Method).
-int hash(int key, int table_size){
+int hashOpen(int key, int table_size){
     return key % table_size;
 }
 
 // Function to insert a new key in hash table.
-void insertKey(Open_Hash_Table *table, int key){
+void insertKeyOpen(Open_Hash_Table *table, int key){
     if(table == NULL) return;
-    int hashCode = hash(key, table->size);
+    int hashCode = hashOpen(key, table->size);
     if(hashCode < 0){
         hashCode = hashCode * -1;
     }
@@ -94,9 +100,9 @@ void insertKey(Open_Hash_Table *table, int key){
 }
 
 // Function to delete a key in hash table.
-void removeKey(Open_Hash_Table *table, int key){
+void removeKeyOpen(Open_Hash_Table *table, int key){
     if(table == NULL) return;
-    int hashCode = hash(key, table->size);
+    int hashCode = hashOpen(key, table->size);
     if(hashCode < 0){
         hashCode = hashCode * -1;
     }
@@ -104,9 +110,9 @@ void removeKey(Open_Hash_Table *table, int key){
 }
 
 // Function to search a key..
-bool isKeyExist(Open_Hash_Table *table, int key){
+bool isKeyExistOpen(Open_Hash_Table *table, int key){
     if(table == NULL) return false;
-    int hashCode = hash(key, table->size);
+    int hashCode = hashOpen(key, table->size);
     if(hashCode < 0){
         hashCode = hashCode * -1;
     }
@@ -114,7 +120,7 @@ bool isKeyExist(Open_Hash_Table *table, int key){
 }
 
 // Function to display all elements in a hash table.
-void DisplayHashTable(Open_Hash_Table *table){
+void DisplayHashTableOpen(Open_Hash_Table *table){
     if(table == NULL) return;
     for(int i = 0; i < table->size; i++){
         printf("%d | -> ", i);
@@ -126,3 +132,5 @@ void DisplayHashTable(Open_Hash_Table *table){
         printf("NULL.\n");
     }
 }
+#endif          // Closing for SEPARATE_CHAINING
+#endif          // Closing for OPEN_HASHING_H
