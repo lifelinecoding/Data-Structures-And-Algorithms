@@ -84,6 +84,13 @@ Open_Hash_Table *createHashTableOpen(Open_Hash_Table *table, int size){
     return table;
 }
 
+// Function to free hash table
+void freeHashTableOpen(Open_Hash_Table *table){
+    if(table == NULL) return;
+    if(table->arr != NULL) free(table->arr);
+    free(table);
+}
+
 // Hash function (Division Method).
 int hashOpen(int key, int table_size){
     return key % table_size;
