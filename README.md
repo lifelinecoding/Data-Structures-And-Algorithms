@@ -25,11 +25,11 @@ This repository is a collection of small, hands-on examples for learning fundame
 | [Queue](./Queue/) | Simple and circular array queues, Linked-list-based queue. |
 | [Tree](./Tree/) | Array-based tree storage and traversal, Linked tree, Binary tree, Separate header .h files for Preorder, Inorder Postorder traversal helpers and definition, Implementation and Insertion/Deletion and other operations in Binary Search Tree, AVL tree, Separate header file for AVL tree operations and rotations (LL, LR, RL and RR rotations), Insertion/Deletion in AVL tree.|
 | [Graph](./Graph/) | Adjacency matrix and adjacency list representations, graph traversal (BFS/DFS), weighted-graph operations, and Prim's minimum spanning tree implementation. |
-| [Hashing](./Hashing/) | Topic folder reserved for future examples; it currently contains no implementation. |
+| [Hashing](./Hashing/) | Separate-chaining and open-addressing hash tables, including linear probing, quadratic probing, and double hashing. |
 | [Sorting](./Sorting/) | Bubble Sort, Counting Sort, Heap Sort, Insertion Sort, Merge Sort, Quick Sort, Radix Sort, and Selection Sort. |
 | [Problems](./Problems/) | Character frequency, Element counting, Odd-occurrence detection, Parentheses matching, Linked-list palindrome exercise. |
 
-The directory layout follows these topic folders; individual files demonstrate a particular operation or algorithm. The tree folder includes linked binary-tree, binary-search-tree, and AVL-tree examples. Graph and hashing coverage is still in progress.
+The directory layout follows these topic folders; individual files demonstrate a particular operation or algorithm. The tree folder includes linked binary-tree, binary-search-tree, and AVL-tree examples. Graph coverage is still in progress.
 
 ## Folder learning guides
 
@@ -39,7 +39,7 @@ Each folder has a `README.md` that introduces its contents and suggests a learni
 2. [Arrays](./Arrays/README.md), [Linked Lists](./Linked%20List/README.md), [Stacks](./Stack/README.md), and [Queues](./Queue/README.md) cover linear data structures and their variants.
 3. [Trees](./Tree/README.md) and [Graphs](./Graph/README.md) build on those foundations.
 4. [Sorting](./Sorting/README.md) and [Problems](./Problems/README.md) provide algorithm implementations and practice exercises.
-5. [Hashing](./Hashing/README.md) describes the topic's current status.
+5. [Hashing](./Hashing/README.md) introduces separate chaining and open-addressing collision-resolution strategies.
 
 The [`.vscode` folder](./.vscode/README.md) also documents the repository's editor configuration.
 

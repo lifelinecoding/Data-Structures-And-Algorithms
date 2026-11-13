@@ -13,7 +13,7 @@ typedef struct Open_Hash_Table{
     int size;
     Node **arr;
 } Open_Hash_Table;
-#endif      // CLosing for OPEN_HASHING
+#endif      // Closing for OPEN_HASHING
 
 #ifndef CLOSED_HASHING
 #define CLOSED_HASHING
